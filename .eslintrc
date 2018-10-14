@@ -1,0 +1,43 @@
+{
+  "extends": ["eslint-config-airbnb-base", "plugin:react/recommended"],
+  "env": {
+    "browser": true,
+    "node": true,
+    "mocha": true
+  },
+  "globals": {
+    "browser": true
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "rules": {
+    "import/no-unresolved": [2, {
+      "commonjs": true
+    }],
+    "import/no-named-as-default": 2,
+    "no-console": 1,
+    "class-methods-use-this": 0,
+    "no-alert": 2,
+    "arrow-body-style": [2, "as-needed"],
+    "no-confusing-arrow": [2, {
+      "allowParens": true
+    }],
+    "no-unused-vars": 1,
+    "jsx-uses-react": true,
+    "func-names": [1, "as-needed"],
+    "react/prop-types": 0,
+    "react/no-deprecated": 0
+  },
+  "plugins": [
+    "import",
+    "react"
+  ],
+  "settings": {
+    "import/parser": "babel-eslint",
+    "import/resolve": {
+      "moduleDirectory": ["node_modules"]
+    }
+  }
+}
