@@ -11,6 +11,6 @@
   "license": "ISC",
   "dependencies": {
     "hapi": "^17.6.0",
-    "hapi-sequelizejs": "^1.3.0"
+    "knex": "^0.15.2"
   }
 }
