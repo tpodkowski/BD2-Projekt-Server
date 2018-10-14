@@ -1,7 +1,9 @@
 import Knex from '../knex';
 
+const BIRDS = '/birds';
+
 const routes = [{
-  path: '/birds',
+  path: `${BIRDS}`,
   method: 'GET',
   handler: (request, h) => {
     return Knex('birds').select()
@@ -12,7 +14,7 @@ const routes = [{
     });
   }
 }, {
-  path: '/birds/{id}',
+  path: `${BIRDS}/{id}`,
   method: 'GET',
   handler: (request) => {
     const { id } = request.params;
@@ -25,9 +27,31 @@ const routes = [{
         } else {
           return {};
         }
-      }).catch((err) => {
-        return err;
-      });
+      }).catch(error => error);
+  }
+}, {
+  path: `${BIRDS}/{id}`,
+  method: 'DELETE',
+  handler: (request) => {
+    const { id } = request.params;
+
+    return Knex('birds')
+      .where({ id })
+      .del()
+      .catch(error => error);
+  }
+}, {
+  path: `${BIRDS}`,
+  method: 'POST',
+  handler: (request) => {
+    const { payload } = request;
+
+    return Knex('birds')
+      .insert(Object.assign(payload))
+      .then( function (result) {
+        return { success: true, message: 'ok' };
+      })
+      .catch(error => error);
   }
 }];
 
