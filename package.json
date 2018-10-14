@@ -4,13 +4,14 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node ./app/server.js",
+    "start": "node bootstrap.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Tomasz Podkowski",
   "license": "ISC",
   "dependencies": {
     "hapi": "^17.6.0",
-    "knex": "^0.15.2"
+    "knex": "^0.15.2",
+    "mysql": "^2.16.0"
   }
 }
