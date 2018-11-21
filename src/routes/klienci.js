@@ -1,12 +1,12 @@
 import Knex from '../knex';
 
-const BIRDS = '/birds';
+const klienci = '/api/klienci';
 
 const routes = [{
-  path: `${BIRDS}`,
+  path: `${klienci}`,
   method: 'GET',
   handler: (request, h) => {
-    return Knex('birds').select()
+    return Knex('klienci').select()
       .then((results) => {
         return results;
     }).catch((err) => {
@@ -14,12 +14,12 @@ const routes = [{
     });
   }
 }, {
-  path: `${BIRDS}/{id}`,
+  path: `${klienci}/{id}`,
   method: 'GET',
   handler: (request) => {
     const { id } = request.params;
 
-    return Knex('birds')
+    return Knex('klienci')
       .where({ id })
       .select().then((results) => {
         if (results.length) {
@@ -30,23 +30,23 @@ const routes = [{
       }).catch(error => error);
   }
 }, {
-  path: `${BIRDS}/{id}`,
+  path: `${klienci}/{id}`,
   method: 'DELETE',
   handler: (request) => {
     const { id } = request.params;
 
-    return Knex('birds')
+    return Knex('klienci')
       .where({ id })
       .del()
       .catch(error => error);
   }
 }, {
-  path: `${BIRDS}`,
+  path: `${klienci}`,
   method: 'POST',
   handler: (request) => {
     const { payload } = request;
 
-    return Knex('birds')
+    return Knex('klienci')
       .insert(Object.assign(payload))
       .then( function (result) {
         return { success: true, message: 'ok' };

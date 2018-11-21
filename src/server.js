@@ -1,14 +1,22 @@
 import Hapi from 'hapi';
 import routes from './routes/routes';
+import Path from 'path';
+import Inert from 'inert';
 
 const server = Hapi.server({
   port: 3000,
-  host: 'localhost'
+  host: 'localhost',
+  routes: {
+    files: {
+      relativeTo: Path.join(__dirname, 'public'),
+    },
+  },
 });
 
 const init = async () => {
-  routes.forEach(route => server.route(route));
 
+  await server.register(Inert);
+  routes.forEach(route => server.route(route));
   await server.start();
 
   console.log(`Server started at ${ server.info.uri }`);
