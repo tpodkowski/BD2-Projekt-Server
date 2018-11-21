@@ -37,3 +37,8 @@
 //     .dropTableIfExists('birds')
 //     .dropTableIfExists('users')
 // };
+exports.up = knex => knex.schema;
+exports.down = knex => knex
+  .schema
+  .dropTableIfExists('birds')
+  .dropTableIfExists('users');
