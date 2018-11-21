@@ -2,19 +2,24 @@
 exports.up = function(knex, Promise) {
   return knex
     .schema
-    .createTable('klienci', function (birdsTable) {
+    .createTable('klienci', clientTable => {
       // Primary Key
-      birdsTable.increments();
+      clientTable.increments();
 
       // Data
-      birdsTable.string('imie', 250).notNullable();
-      birdsTable.string('nazwisko', 250).notNullable();
-      birdsTable.string('nip', 250).notNullable();
-      birdsTable.string('adres', 36).notNullable().unique();
-      birdsTable.integer('rabat').notNullable().defaultTo(0);
+      clientTable.string('imie', 250).notNullable();
+      clientTable.string('nazwisko', 250).notNullable();
+      clientTable.string('nip', 250).notNullable();
+      clientTable.string('adres', 36).notNullable().unique();
+      clientTable.integer('rabat').notNullable().defaultTo(0);
 
-      birdsTable.timestamp('created_at').notNullable();
-    });
+      clientTable.timestamp('created_at').notNullable();
+    })
+    .createTable('kategorie', categoryTable => {
+      categoryTable.increments();
+
+      categoryTable.string('nazwaKategorii', 250).notNullable();
+    })
 };
 
 exports.down = function(knex, Promise) {
