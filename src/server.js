@@ -2,6 +2,8 @@ import Hapi from 'hapi';
 import routes from './routes/routes';
 import Path from 'path';
 import Inert from 'inert';
+const corsHeaders = require('hapi-allow-cors-headers');
+
 
 const server = Hapi.server({
   port: 3000,
@@ -15,7 +17,7 @@ const server = Hapi.server({
 
 const init = async () => {
 
-  await server.register(Inert);
+  await server.register([Inert, corsHeaders]);
   routes.forEach(route => server.route(route));
   await server.start();
 
