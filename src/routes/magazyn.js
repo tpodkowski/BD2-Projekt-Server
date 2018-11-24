@@ -1,13 +1,12 @@
 import Knex from '../knex';
 
-const tableName = 'kategorie';
-const kategorie = '/api/kategorie';
+const magazyn = '/api/magazyn';
 
 const routes = [{
-  path: `${kategorie}`,
+  path: `${magazyn}`,
   method: 'GET',
   handler: (request, h) => {
-    return Knex(tableName).select()
+    return Knex('Magazyn').select()
       .then((results) => {
         return results;
     }).catch((err) => {
@@ -15,12 +14,12 @@ const routes = [{
     });
   }
 }, {
-  path: `${kategorie}/{id}`,
+  path: `${magazyn}/{id}`,
   method: 'GET',
   handler: (request) => {
     const { id } = request.params;
 
-    return Knex(tableName)
+    return Knex('Magazyn')
       .where({ id })
       .select().then((results) => {
         if (results.length) {
@@ -31,28 +30,28 @@ const routes = [{
       }).catch(error => error);
   }
 }, {
-  path: `${kategorie}/{id}`,
+  path: `${magazyn}/{id}`,
   method: 'DELETE',
   handler: (request) => {
     const { id } = request.params;
 
-    return Knex(tableName)
+    return Knex('Magazyn')
       .where({ id })
       .del()
-      .then(() => Knex(tableName)
+      .then(() => Knex('Magazyn')
         .select()
         .then(list => list));
   }
 }, {
-  path: `${kategorie}`,
+  path: `${magazyn}`,
   method: 'POST',
   handler: (request) => {
     const { payload } = request;
 
-    return Knex(tableName)
+    return Knex('Magazyn')
       .insert(Object.assign(payload))
       .then(() =>
-        Knex(tableName)
+        Knex('Magazyn')
           .select()
           .then(list => list)
       )

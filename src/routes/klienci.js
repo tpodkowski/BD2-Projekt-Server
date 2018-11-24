@@ -50,9 +50,11 @@ const routes = [{
 
     return Knex('klienci')
       .insert(Object.assign(payload))
-      .then( function (result) {
-        return { success: true, message: 'ok' };
-      })
+      .then(() =>
+        Knex('klienci')
+          .select()
+          .then(list => list)
+      )
       .catch(error => error);
   }
 }];

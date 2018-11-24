@@ -1,13 +1,12 @@
 import Knex from '../knex';
 
-const tableName = 'kategorie';
-const kategorie = '/api/kategorie';
+const szczegolyzamowienia = '/api/szczegolyzamowienia';
 
 const routes = [{
-  path: `${kategorie}`,
+  path: `${szczegolyzamowienia}`,
   method: 'GET',
   handler: (request, h) => {
-    return Knex(tableName).select()
+    return Knex('SzczegolyZamowienia').select()
       .then((results) => {
         return results;
     }).catch((err) => {
@@ -15,12 +14,12 @@ const routes = [{
     });
   }
 }, {
-  path: `${kategorie}/{id}`,
+  path: `${szczegolyzamowienia}/{id}`,
   method: 'GET',
   handler: (request) => {
     const { id } = request.params;
 
-    return Knex(tableName)
+    return Knex('SzczegolyZamowienia')
       .where({ id })
       .select().then((results) => {
         if (results.length) {
@@ -31,28 +30,28 @@ const routes = [{
       }).catch(error => error);
   }
 }, {
-  path: `${kategorie}/{id}`,
+  path: `${szczegolyzamowienia}/{id}`,
   method: 'DELETE',
   handler: (request) => {
     const { id } = request.params;
 
-    return Knex(tableName)
+    return Knex('SzczegolyZamowienia')
       .where({ id })
       .del()
-      .then(() => Knex(tableName)
+      .then(() => Knex('SzczegolyZamowienia')
         .select()
         .then(list => list));
   }
 }, {
-  path: `${kategorie}`,
+  path: `${szczegolyzamowienia}`,
   method: 'POST',
   handler: (request) => {
     const { payload } = request;
 
-    return Knex(tableName)
+    return Knex('SzczegolyZamowienia')
       .insert(Object.assign(payload))
       .then(() =>
-        Knex(tableName)
+        Knex('SzczegolyZamowienia')
           .select()
           .then(list => list)
       )
