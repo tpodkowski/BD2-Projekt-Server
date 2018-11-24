@@ -10,7 +10,9 @@ exports.up = function(knex, Promise) {
       clientTable.string('imie', 25).notNullable();
       clientTable.string('nazwisko', 25).notNullable();
       clientTable.string('nip', 10).notNullable();
-      clientTable.string('adres', 36).notNullable().unique();
+      clientTable.string('ulica', 36).notNullable();
+	  clientTable.string('kodPocztowy',6).notNullable();
+	  clientTable.string('Miejscowosc',12).notNullable();
 
       clientTable.timestamp('created_at').notNullable();
     }

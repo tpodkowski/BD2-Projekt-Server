@@ -1,13 +1,15 @@
 
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
-  return knex('kategorie').del()
+  return knex('Kategorie').del()
     .then(function () {
       // Inserts seed entries
       return knex('kategorie').insert([
-        { nazwaKategorii: 'Szosa' },
-        { nazwaKategorii: 'MTB' },
-        { nazwaKategorii: 'DH' },
+        { nazwaKategorii: 'MTB'},
+        { nazwaKategorii: 'Szosowy' },
+        { nazwaKategorii: 'Miejski' },
+        { nazwaKategorii: 'Fatbike'},
+        { nazwaKategorii: 'Akcesoria' },
       ]);
     });
 
