@@ -10,7 +10,8 @@ exports.seed = function(knex, Promise) {
   },{
     idKlienta: '1',
     data: '2018-11-21',
-  },];
+  },
+];
 
   // Deletes ALL existing entries
   return knex(tableName)
