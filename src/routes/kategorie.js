@@ -39,7 +39,9 @@ const routes = [{
     return Knex(tableName)
       .where({ id })
       .del()
-      .catch(error => error);
+      .then(() => Knex(tableName)
+        .select()
+        .then(list => list));
   }
 }, {
   path: `${kategorie}`,

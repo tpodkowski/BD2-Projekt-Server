@@ -38,7 +38,9 @@ const routes = [{
     return Knex('klienci')
       .where({ id })
       .del()
-      .catch(error => error);
+      .then(() => Knex('klienci')
+        .select()
+        .then(list => list));
   }
 }, {
   path: `${klienci}`,
