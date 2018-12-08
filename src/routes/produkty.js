@@ -1,4 +1,5 @@
 import Knex from '../knex';
+import knex from '../knex';
 
 const produkty = '/api/produkty';
 
@@ -57,6 +58,20 @@ const routes = [{
       )
       .catch(error => error);
   }
+}, {
+  path: `${produkty}/{id}`,
+  method: 'PATCH',
+  handler: (request) => {
+    const { payload } = request;
+    const { id } = request.params;
+
+    return Knex('Produkty')
+      .where({ id })
+      .update(payload)
+      .then(() => Knex('Produkty')
+        .select()
+        .then(products => products));
+  },
 }];
 
 export default routes;

@@ -57,6 +57,20 @@ const routes = [{
       )
       .catch(error => error);
   }
+}, {
+  path: `${klienci}/{id}`,
+  method: 'PATCH',
+  handler: (request) => {
+    const { payload } = request;
+    const { id } = request.params;
+    console.log(id, payload);
+    return Knex('klienci')
+      .where({ id })
+      .update(payload)
+      .then(() => Knex('klienci')
+        .select()
+        .then(clients => clients));
+  },
 }];
 
 export default routes;
