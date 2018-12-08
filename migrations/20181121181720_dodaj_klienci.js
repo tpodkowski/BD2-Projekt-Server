@@ -19,13 +19,6 @@ exports.up = function (knex, Promise) {
       categoryTable.string('nazwaKategorii', 25).notNullable();
     })
 
-    .createTable('Magazyn', magazynTable => {
-      magazynTable.increments();
-
-      magazynTable.integer('idProduktu', 10).notNullable();
-      magazynTable.integer('ilosc', 10).notNullable();
-    })
-
     .createTable('Produkty', produktyTable => {
       produktyTable.increments();
       produktyTable.string('nazwa', 25).notNullable();

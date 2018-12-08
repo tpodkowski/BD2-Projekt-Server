@@ -1,9 +1,9 @@
 import klienci from './klienci';
 import kategorie from './kategorie';
-import magazyn from './magazyn';
 import produkty from './produkty';
 import szczegolyzamowienia from './szczegolyzamowienia';
 import zamowienia from './zamowienia';
+import Knex from '../knex';
 
 const routes = [{
   path: '/',
@@ -26,7 +26,6 @@ const routes = [{
   },
   ...klienci,
   ...kategorie,
-  ...magazyn,
   ...produkty,
   ...szczegolyzamowienia,
   ...zamowienia,
