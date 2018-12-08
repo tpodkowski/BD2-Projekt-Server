@@ -1,5 +1,5 @@
 import Knex from '../knex';
-
+import handlers from '../utils/handlers';
 const tableName = 'kategorie';
 const kategorie = '/api/kategorie';
 
@@ -33,31 +33,11 @@ const routes = [{
 }, {
   path: `${kategorie}/{id}`,
   method: 'DELETE',
-  handler: (request) => {
-    const { id } = request.params;
-
-    return Knex(tableName)
-      .where({ id })
-      .del()
-      .then(() => Knex(tableName)
-        .select()
-        .then(list => list));
-  }
+  handler: handlers.deleteHandler(tableName),
 }, {
   path: `${kategorie}`,
   method: 'POST',
-  handler: (request) => {
-    const { payload } = request;
-
-    return Knex(tableName)
-      .insert(Object.assign(payload))
-      .then(() =>
-        Knex(tableName)
-          .select()
-          .then(list => list)
-      )
-      .catch(error => error);
-  }
+  handler: handlers.postHandler(tableName),
 }];
 
 export default routes;
